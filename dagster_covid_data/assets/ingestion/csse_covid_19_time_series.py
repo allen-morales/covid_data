@@ -33,7 +33,7 @@ def ingest_data(context, duckdb: DuckDBResource) -> None:
         data = add_ingestion_timestamp(data)
     
         reload_data_to_duckdb(context=context,
-                              duckdb=duckdb,
+                              db_connection=duckdb,
                               data=data,
                               schema_name=covid_raw_schema_name,
                               table_name=asset_name)
@@ -63,7 +63,7 @@ def time_series_covid19_deaths_US(context: dg.AssetExecutionContext, duckdb: Duc
     ingest_data(context, duckdb)
 
 @dg.asset(
-    group_name="git_hub_time_series_ingestioningestion",
+    group_name="time_series_ingestion",
     kinds={"python", "duckdb"}
 )
 def time_series_covid19_deaths_global(context: dg.AssetExecutionContext, duckdb: DuckDBResource) -> None:

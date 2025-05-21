@@ -37,6 +37,6 @@
 **/logs
 **/scratch
 **/backup
-**/dbt_covid_data_analysis/logs
+**logs**
 LICENSE
 README.md

@@ -10,7 +10,7 @@ import pandas as pd
 
 
 @dg.asset(
-    group_name="git_hub_ingestion",
+    group_name="lookup_ingestion",
     kinds={"python", "duckdb"}
 )
 def uid_iso_fips_lookup_table(context: dg.AssetExecutionContext, duckdb: DuckDBResource) -> None:
@@ -27,7 +27,7 @@ def uid_iso_fips_lookup_table(context: dg.AssetExecutionContext, duckdb: DuckDBR
     data = add_ingestion_timestamp(data)
 
     reload_data_to_duckdb(context=context,
-                              duckdb=duckdb,
+                              db_connection=duckdb,
                               data=data,
                               schema_name=covid_raw_schema_name,
                               table_name=asset_name)

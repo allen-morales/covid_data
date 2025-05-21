@@ -21,7 +21,7 @@ WORKDIR /opt/dagster/app
 # Copy the source code into the container.
 COPY . /opt/dagster/app
 
-ENV DBT_PROFILES_DIR=/opt/dagster/app/dbt_covid_data_analysis/
+ENV DBT_PROFILES_DIR=/opt/dagster/app/dbt_covid_data/
 
 # Run dagster gRPC server on port 4000
 EXPOSE 3000
