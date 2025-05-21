@@ -1,0 +1,9 @@
+dbt_covid_data_profile:
+  target: default-duckdb
+  outputs:
+    default-duckdb:
+      type: duckdb
+      path: ../data/covid.duckdb
+      schema: covid_data
+      threads: 2
+      

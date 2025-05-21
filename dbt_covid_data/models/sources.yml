@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: covid_data_raw
+    description: "Source data from DuckDB for COVID-19 analysis"
+    schema: covid_data_raw
+    tables:
+      - name: csse_covid_19_daily_reports
+        meta:                               
+          dagster:                       
+            asset_key: ["csse_covid_19_daily_reports"]
+      - name: csse_covid_19_daily_reports_us
+        meta:                               
+          dagster:                       
+            asset_key: ["csse_covid_19_daily_reports_us"]      
+      - name: uid_iso_fips_lookup_table
+        meta:                               
+          dagster:                       
+            asset_key: ["uid_iso_fips_lookup_table"]
+

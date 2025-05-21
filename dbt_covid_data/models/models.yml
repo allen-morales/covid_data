@@ -1,0 +1,57 @@
+models:
+  - name: dim_calendar
+    description: "Calendar table containing dates from 2020-01-01 to 2023-04-01"
+    config:
+      meta:
+        dagster:
+          group: dimensions
+  - name: dim_locations
+    description: "Dimension table containing location information"
+    config:
+      meta:
+        dagster:
+          group: dimensions
+    columns:
+      - name: location_id
+        description: "Primary key for the location dimension"
+        tests:
+          - unique
+          - not_null
+      - name: code3
+        description: "Country Code"
+        tests:
+          - not_null
+            
+  - name: fct_covid_us_metrics
+    description: "Fact table containing COVID-19 US metrics"
+    config:
+      meta:
+        dagster:
+          group: facts
+    columns:
+      - name: fact_covid_us_metrics_id
+        description: "Primary key for the fct_covid_metrics table"
+        tests:
+          - unique
+          - not_null
+      - name: location_id
+        constraints:
+          - type: foreign_key
+            to: ref('dim_locations')
+  
+  - name: fct_covid_global_metrics
+    description: "Fact table containing COVID-19 Global metrics"
+    config:
+      meta:
+        dagster:
+          group: facts
+    columns:
+      - name: fact_covid_global_metrics_id
+        description: "Primary key for the fct_covid_global_metrics table"
+        tests:
+          - unique
+          - not_null
+      - name: location_id
+        constraints:
+          - type: foreign_key
+            to: ref('dim_locations')
