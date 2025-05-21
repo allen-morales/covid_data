@@ -11,7 +11,7 @@ date_mapping AS (
     FROM {{ ref('dim_calendar') }}
 )
 SELECT
-    md5(concat(idl.uid, dm.date_id)) AS fact_covid_us_metrics_id,
+    md5(concat(loc.location_id, dm.date_id)) AS fact_covid_us_metrics_id,
 	cdru.uid AS location_id,
     dm.date_id AS date_id,
 	cdru.confirmed,
@@ -24,9 +24,6 @@ SELECT
 	cdru.ingestion_timestamp
 FROM
 	{{ source('covid_data_raw', 'csse_covid_19_daily_reports_us')  }} cdru
-JOIN {{ source('covid_data_raw', 'uid_iso_fips_lookup_table')  }} idl
-    ON TRUE
-    AND cdru.uid = idl.uid
 JOIN date_mapping dm
     ON cdru.report_date = dm.fact_date
 JOIN {{ ref('dim_locations') }} loc

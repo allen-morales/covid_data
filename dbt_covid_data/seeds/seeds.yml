@@ -1,6 +1,6 @@
 version 2:
 
-sources:
+seeds:
   - name: calendar
     description: "Calendar table containing dates from 2020-01-01 to 2023-04-01"
     config:

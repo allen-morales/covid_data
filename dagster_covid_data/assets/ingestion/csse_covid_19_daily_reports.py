@@ -34,7 +34,7 @@ def ingest_data(context, duckdb: DuckDBResource) -> None:
         data = add_ingestion_timestamp(data)
         
         append_data_to_duckdb(context=context,
-                              duckdb=duckdb,
+                              db_connection=duckdb,
                               data=data,
                               schema_name=covid_raw_schema_name,
                               table_name=asset_name)

@@ -11,7 +11,11 @@ DUCK_DATABASE_PATH = Path.joinpath(DATA_DIRECTORY, "covid.duckdb")
 DBT_PROJECT_PATH = Path.joinpath(PROJECT_DIRECTORY, "dbt_covid_data")
 
 # DBT Settings
-dbt_project = DbtProject(project_dir=DBT_PROJECT_PATH)
+dbt_project = DbtProject(project_dir=DBT_PROJECT_PATH,
+                         profiles_dir=DBT_PROJECT_PATH)
+
+dbt_project.prepare_if_dev()
+
 dbt_resource = DbtCliResource(project_dir=dbt_project)
 
 

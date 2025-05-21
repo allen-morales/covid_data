@@ -1,7 +1,7 @@
 dbt_covid_data_profile:
-  target: default-duckdb
+  target: dev
   outputs:
-    default-duckdb:
+    dev:
       type: duckdb
       path: ../data/covid.duckdb
       schema: covid_data

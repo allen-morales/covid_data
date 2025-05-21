@@ -10,8 +10,6 @@ from dagster_covid_data.assets.dbt_assets import dbt_models
 
 assets = dg.load_assets_from_modules([assets])
 
-# Dagster object that contains the dbt assets and resource
-# Add Dagster definitions to Definitions object
 defs = dg.Definitions(
     assets=assets,
     resources={'dbt': dbt_resource,
