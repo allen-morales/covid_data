@@ -9,6 +9,50 @@ A data engineering project for managing, transforming, and analyzing COVID-19 da
 - **Orchestration:** Leverages Dagster for workflow orchestration and asset management.
 - **Testing:** Includes unit and integration tests for data pipelines.
 
+## Getting Started
+
+### Prerequisites
+
+- Python 3.12.10
+- [dbt](https://docs.getdbt.com/docs/installation)
+- [Dagster](https://docs.dagster.io/getting-started)
+- Docker & Docker Compose
+
+### Installation
+
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/allen-morales/covid_data.git
+   cd covid_data
+   ```
+
+### Running with Docker Compose
+
+Start all services:
+```sh
+docker compose up
+```
+
+This will build and start the containers as defined in `docker-compose.yml`.
+
+Once the services are running, **open your browser and go to [http://localhost:3000](http://localhost:3000)** to access the Dagster UI.
+
+### Running Locally (without Docker)
+
+- **Install dependencies:**
+  ```sh
+  pip install -r requirements.txt
+  ```
+- **Start Dagster development server:**
+  ```sh
+  dagster dev
+  ```
+- **Run dbt commands:**
+  ```sh
+  cd dbt_covid_data
+  dbt run
+  ```
+
 ## Technologies Used
 
 - **Python**  
@@ -34,6 +78,7 @@ A data engineering project for managing, transforming, and analyzing COVID-19 da
 
 - **pytest**  
   Testing framework for writing and running unit and integration tests.
+
 
 
 ## Project Structure
@@ -219,48 +264,6 @@ covid_data/
   Unit tests for `data.py`.
 - **test_utils_duckdb.py**  
   Unit tests for `duckdb.py`.
-
-## Getting Started
-
-### Prerequisites
-
-- Python 3.12.10
-- [dbt](https://docs.getdbt.com/docs/installation)
-- [Dagster](https://docs.dagster.io/getting-started)
-- Docker & Docker Compose
-
-### Installation
-
-1. **Clone the repository:**
-   ```sh
-   git clone https://github.com/allen-morales/covid_data.git
-   cd covid_data
-   ```
-
-### Running with Docker Compose
-
-Start all services:
-```sh
-docker compose up
-```
-
-This will build and start the containers as defined in `docker-compose.yml`.
-
-### Running Locally (without Docker)
-
-- **Install dependencies:**
-  ```sh
-  pip install -r requirements.txt
-  ```
-- **Start Dagster development server:**
-  ```sh
-  dagster dev
-  ```
-- **Run dbt commands:**
-  ```sh
-  cd dbt_covid_data
-  dbt run
-  ```
 
 ## Data Analysis
 
