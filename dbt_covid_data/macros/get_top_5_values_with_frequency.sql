@@ -1,4 +1,4 @@
-{% macro get_top_5_values_with_count(table_name) %}
+{% macro get_top_5_values_with_frequency(table_name) %}
 {% set columns = adapter.get_columns_in_relation(ref(table_name)) %}
 
 {% for column in columns %}
