@@ -1,47 +1,94 @@
 # covid_data
 
-This is a [Dagster](https://dagster.io/) project scaffolded with [`dagster project scaffold`](https://docs.dagster.io/guides/build/projects/creating-a-new-project).
+A data engineering project for managing, transforming, and analyzing COVID-19 datasets using [dbt](https://www.getdbt.com/), [Dagster](https://dagster.io/), and Python.
 
-## Getting started
+## Features
 
-First, install your Dagster code location as a Python package. By using the --editable flag, pip will install your Python package in ["editable mode"](https://pip.pypa.io/en/latest/topics/local-project-installs/#editable-installs) so that as you develop, local code changes will automatically apply.
+- **Data Ingestion:** Collects and stores COVID-19 data from various sources.
+- **Transformation:** Uses dbt for data modeling and transformation.
+- **Orchestration:** Leverages Dagster for workflow orchestration and asset management.
+- **Testing:** Includes unit and integration tests for data pipelines.
 
-```bash
-pip install -e ".[dev]"
+## Project Structure
+
+```
+covid_data/
+├── data/                        # Data storage (contains .keep to retain folder)
+│   └── .keep
+├── dbt_covid_data/              # dbt project files
+│   ├── dbt_project.yml
+│   └── ... (other dbt files)
+├── dagster_covid_data/          # Dagster and Python source code
+│   ├── __init__.py
+│   └── utils/
+│       ├── __init__.py
+│       ├── common.py
+│       ├── data.py
+│       └── duckdb.py
+├── tests/                       # Unit tests
+│   ├── test_utils_common.py
+│   ├── test_utils_data.py
+│   └── test_utils_duckdb.py
+├── requirements.txt             # Python dependencies
+├── Dockerfile                   # Docker container setup
+├── docker-compose.yml           # Docker Compose orchestration
+├── .gitignore                   # Git ignore rules
+├── settings.py                  # Project-wide configuration and paths
+└── README.md                    # Project documentation
 ```
 
-Then, start the Dagster UI web server:
+## Getting Started
 
-```bash
-dagster dev
+### Prerequisites
+
+- Python 3.12.10
+- [dbt](https://docs.getdbt.com/docs/installation)
+- [Dagster](https://docs.dagster.io/getting-started)
+- Docker & Docker Compose
+
+### Installation
+
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/allen-morales/covid_data.git
+   cd covid_data
+   ```
+
+2. **Set up dbt profiles:**
+   - Configure your `profiles.yml` in `~/.dbt/` for your target database.
+
+### Running with Docker Compose
+
+Start all services:
+```sh
+docker compose up
 ```
 
-Open http://localhost:3000 with your browser to see the project.
+This will build and start the containers as defined in `docker-compose.yml`.
 
-You can start writing assets in `covid_data/assets.py`. The assets are automatically loaded into the Dagster code location as you define them.
+### Running Locally (without Docker)
 
-## Development
+- **Install dependencies:**
+  ```sh
+  pip install -r requirements.txt
+  ```
+- **Start Dagster development server:**
+  ```sh
+  dagster dev
+  ```
+- **Run dbt commands:**
+  ```sh
+  cd dbt_covid_data
+  dbt run
+  ```
 
-### Adding new Python dependencies
+## Data Analysis
 
-You can specify new Python dependencies in `setup.py`.
+1. What are the top 5 most common values in a particular column, and what is their frequency?
+    ```
+    
+    ```
+2. How does a particular metric change over time within the dataset?
+3. Is there a correlation between two specific columns? Explain your findings.
 
-### Unit testing
-
-Tests are in the `covid_data_tests` directory and you can run tests using `pytest`:
-
-```bash
-pytest covid_data_tests
-```
-
-### Schedules and sensors
-
-If you want to enable Dagster [Schedules](https://docs.dagster.io/guides/automate/schedules/) or [Sensors](https://docs.dagster.io/guides/automate/sensors/) for your jobs, the [Dagster Daemon](https://docs.dagster.io/guides/deploy/execution/dagster-daemon) process must be running. This is done automatically when you run `dagster dev`.
-
-Once your Dagster Daemon is running, you can start turning on schedules and sensors for your jobs.
-
-## Deploy on Dagster+
-
-The easiest way to deploy your Dagster project is to use Dagster+.
-
-Check out the [Dagster+ documentation](https://docs.dagster.io/dagster-plus/) to learn more.
+---

@@ -1,3 +1,26 @@
+"""
+settings.py
+
+This module defines global configuration, directory paths, and resource objects for the covid_data project.
+
+Contents:
+    - Project and data directory paths
+    - DuckDB database path
+    - dbt project and resource configuration
+    - Source URLs for COVID-19 datasets
+
+Attributes:
+    PROJECT_DIRECTORY (Path): Root directory of the project.
+    DATA_DIRECTORY (Path): Directory for storing data files.
+    DUCK_DATABASE_PATH (Path): Path to the DuckDB database file.
+    DBT_PROJECT_PATH (Path): Path to the dbt project directory.
+    dbt_project (DbtProject): dbt project configuration object.
+    dbt_resource (DbtCliResource): Dagster resource for running dbt CLI commands.
+    covid_data_source_url (str): URL for raw COVID-19 data.
+    covid_base_source_url (str): Base URL for COVID-19 data repository.
+    covid_raw_schema_name (str): Default schema name for raw COVID-19 data.
+"""
+
 from pathlib import Path
 from dagster_dbt import (
     DbtCliResource,

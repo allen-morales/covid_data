@@ -11,6 +11,20 @@ def append_data_to_duckdb(context: AssetExecutionContext,
                         data: DataFrame,
                         schema_name: str, 
                         table_name: str) -> None:
+    """
+    Appends data to a DuckDB table. If the table does not exist, it is created.
+    If the table exists, missing columns are added to the DataFrame and data is inserted.
+
+    Args:
+        context (AssetExecutionContext): Dagster execution context for logging.
+        db_connection (DuckDBResource): DuckDB resource for database connection.
+        data (DataFrame): The data to append.
+        schema_name (str): The schema name in DuckDB.
+        table_name (str): The table name in DuckDB.
+
+    Returns:
+        None
+    """
     with db_connection.get_connection() as connection:
         connection.execute(f"CREATE SCHEMA IF NOT EXISTS {schema_name}")
         context.log.info(f"{connection}")
@@ -43,7 +57,20 @@ def reload_data_to_duckdb(context: AssetExecutionContext,
                         data: DataFrame,
                         schema_name: str, 
                         table_name: str) -> None:
-    
+    """
+    Replaces all data in a DuckDB table with the provided DataFrame.
+    If the table does not exist, it is created.
+
+    Args:
+        context (AssetExecutionContext): Dagster execution context for logging.
+        db_connection (DuckDBResource): DuckDB resource for database connection.
+        data (DataFrame): The data to load.
+        schema_name (str): The schema name in DuckDB.
+        table_name (str): The table name in DuckDB.
+
+    Returns:
+        None
+    """
     with db_connection.get_connection() as connection:
         connection.execute(f"CREATE SCHEMA IF NOT EXISTS {schema_name}")
         context.log.info(f"{connection}")
@@ -60,12 +87,12 @@ def get_table_columns(db_connection: DuckDBResource, schema_name: str, table_nam
     Retrieves the existing columns of a table in DuckDB.
 
     Args:
-        connection (duckdb.DuckDBPyConnection): The DuckDB connection object.
+        db_connection (DuckDBResource): DuckDB resource for database connection.
         schema_name (str): The name of the schema.
         table_name (str): The name of the table.
 
     Returns:
-        list: A list of existing column names in the specified table.
+        list: A list of existing column names in the specified table. Returns an empty list if the table does not exist.
     """
     try:
         with db_connection.get_connection() as connection:
@@ -75,4 +102,3 @@ def get_table_columns(db_connection: DuckDBResource, schema_name: str, table_nam
         return []
     else:
         return [row[0] for row in result]
-    

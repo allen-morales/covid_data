@@ -3,3 +3,5 @@ data/*.duckdb
 .venv
 *logs*
 *.duckdb*
+*.pytest_cache
+*dbt_covid_data/target/
