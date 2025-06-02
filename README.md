@@ -9,6 +9,33 @@ A data engineering project for managing, transforming, and analyzing COVID-19 da
 - **Orchestration:** Leverages Dagster for workflow orchestration and asset management.
 - **Testing:** Includes unit and integration tests for data pipelines.
 
+## Technologies Used
+
+- **Python**  
+  The primary programming language for data processing, orchestration, and utility scripts.
+
+- **dbt (Data Build Tool)**  
+  Used for data modeling, transformation, and analytics engineering with SQL.
+
+- **Dagster**  
+  Orchestration framework for building, running, and monitoring data pipelines and assets.
+
+- **DuckDB**  
+  Embedded analytical database used for fast, in-process data storage and querying.
+
+- **Pandas**  
+  Python library for data manipulation and analysis.
+
+- **Docker**  
+  Containerization platform to package and run the application in isolated environments.
+
+- **Docker Compose**  
+  Tool for defining and running multi-container Docker applications.
+
+- **pytest**  
+  Testing framework for writing and running unit and integration tests.
+
+
 ## Project Structure
 
 ```
