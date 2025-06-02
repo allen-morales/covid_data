@@ -54,9 +54,6 @@ covid_data/
    cd covid_data
    ```
 
-2. **Set up dbt profiles:**
-   - Configure your `profiles.yml` in `~/.dbt/` for your target database.
-
 ### Running with Docker Compose
 
 Start all services:
